@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>x.gd リンクオープナー</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      text-align: center;
+    }
+    input {
+      font-size: 1.2em;
+      padding: 0.5em;
+      width: 10em;
+      text-align: center;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 0.5em 1em;
+      margin-left: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>x.gd リンクオープナー</h1>
+  <p>5～7桁のコードを入力してください：</p>
+  <input id="codeInput" maxlength="7" pattern="[a-zA-Z0-9]{5,7}" placeholder="例: 9Wx8V">
+  <button onclick="openSite()">サイトを開く</button>
+
+  <script>
+    function openSite() {
+      const code = document.getElementById("codeInput").value.trim();
+      if (!/^[a-zA-Z0-9]{5,7}$/.test(code)) {
+        alert("5～7桁の英数字を入力してください。");
+        return;
+      }
+      const url = `https://x.gd/${code}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
