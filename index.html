@@ -25,18 +25,26 @@
 <body>
   <h1>x.gd リンクオープナー</h1>
   <p>5～7桁のコードを入力してください：</p>
-  <input id="codeInput" maxlength="7" pattern="[a-zA-Z0-9]{5,7}" placeholder="例: 9Wx8V">
+  <input id="codeInput" maxlength="7" pattern="[a-zA-Z0-9]{5,7}" placeholder="例: 9Wx8V" onkeydown="checkEnter(event)">
   <button onclick="openSite()">サイトを開く</button>
 
   <script>
+    // サイトを開く関数
     function openSite() {
-      const code = document.getElementById("codeInput").value.trim();
-      if (!/^[a-zA-Z0-9]{5,7}$/.test(code)) {
-        alert("5～7桁の英数字を入力してください。");
-        return;
+      const code = document.getElementById("codeInput").value.trim(); // 入力されたコードを取得
+      if (!/^[a-zA-Z0-9]{5,7}$/.test(code)) { // 5～7桁の英数字かチェック
+        alert("5～7桁の英数字を入力してください。"); // エラーメッセージ
+        return; // 処理を中断
       }
-      const url = `https://x.gd/${code}`;
-      window.open(url, '_blank');
+      const url = `https://x.gd/${code}`; // URLを作成
+      window.open(url, '_blank'); // 新しいタブでURLを開く
+    }
+
+    // エンターキーが押されたときにopenSite関数を呼び出す
+    function checkEnter(event) {
+      if (event.key === 'Enter') { // エンターキーが押された場合
+        openSite(); // openSiteを呼び出す
+      }
     }
   </script>
 </body>
